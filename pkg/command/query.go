@@ -102,7 +102,9 @@ func (c *Query) Run(ctx context.Context) error {
 		exitErr = errors.Join(exitErr, fmt.Errorf("%w: failed to wait listing", err))
 	}
 	if err := grepCmd.Wait(); err != nil {
-		exitErr = errors.Join(exitErr, fmt.Errorf("%w: failed to wait grep", err))
+		if !isExitWith(err, 1) { // 1 means that no lines were selected
+			exitErr = errors.Join(exitErr, fmt.Errorf("%w: failed to wait grep", err))
+		}
 	}
 	if exitErr != nil {
 		return exitErr

@@ -30,3 +30,10 @@ func Run(ctx context.Context, cmd Cmd) error {
 func logCmd(cmd *exec.Cmd) {
 	slog.Debug("exec", slog.String("cmd", strings.Join(cmd.Args, " ")))
 }
+
+func isExitWith(err error, exitCode int) bool {
+	if exitErr, ok := err.(*exec.ExitError); ok {
+		return exitErr.ExitCode() == exitCode
+	}
+	return false
+}
