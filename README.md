@@ -6,7 +6,7 @@ jukebox - play music files by querying your local library
 
 # Usage
 
-  jukebox [flags] [mf -i additional args...] [--] [grep args...]
+  jukebox [flags] [--] [grep args...] [-- mf -i additional args...]
 
 # Examples
 

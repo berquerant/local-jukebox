@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"slices"
 
 	"github.com/berquerant/local-jukebox/pkg/config"
 	"github.com/berquerant/local-jukebox/pkg/run"
+	"github.com/berquerant/local-jukebox/pkg/slicex"
 	"github.com/berquerant/structconfig"
 	"github.com/spf13/pflag"
 )
@@ -17,7 +19,7 @@ const usage = `jukebox - play music files by querying your local library
 
 # Usage
 
-  jukebox [flags] [mf -i additional args...] [--] [grep args...]
+  jukebox [flags] [--] [grep args...] [-- mf -i additional args...]
 
 # Examples
 
@@ -78,18 +80,10 @@ func main() {
 	c.SetupLogger(os.Stderr)
 	c.Writer = os.Stdout
 
-	args := fs.Args() // jukebox POSITIONAL_ARGS...
-	dashPos := fs.ArgsLenAtDash()
-	if dashPos > 1 { // jukebox ARG... -- [ARG...]
-		c.ListArgs = args[1:dashPos]
+	if slices.Contains(os.Args, "--") { // jukebox ... -- ...
+		_, afterDash := slicex.Split(os.Args, "--")
+		c.GrepArgs, c.ListArgs = slicex.Split(afterDash, "--")
 	}
-	if dashPos > 0 { // jukebox [ARG...] -- ARG...
-		c.GrepArgs = args[dashPos:]
-	}
-	if dashPos < 0 { // jukebox [ARG...] (-- is not found)
-		c.ListArgs = args[1:]
-	}
-
 	cj, _ := json.Marshal(c)
 	slog.Debug("config", slog.String("json", string(cj)))
 	if err := run.Main(c); err != nil {
