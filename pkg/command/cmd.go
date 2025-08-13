@@ -7,6 +7,8 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+
+	"golang.org/x/text/unicode/norm"
 )
 
 type Cmd interface {
@@ -36,4 +38,8 @@ func isExitWith(err error, exitCode int) bool {
 		return exitErr.ExitCode() == exitCode
 	}
 	return false
+}
+
+func normalizeString(s string) string {
+	return norm.NFKC.String(s)
 }

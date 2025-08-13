@@ -7,8 +7,6 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
-
-	"golang.org/x/text/unicode/norm"
 )
 
 func NewNormalize(dest, src string) *Normalize {
@@ -60,7 +58,7 @@ func (c *Normalize) Run(ctx context.Context) error {
 			failed++
 			continue
 		}
-		n := norm.NFKC.String(x)
+		n := normalizeString(x)
 		s := fmt.Sprintf(`{"path":"%s","n":%s}`, p.Path, n)
 		fmt.Fprintln(dest, s)
 	}
