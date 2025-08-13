@@ -6,7 +6,7 @@ tool golang.org/x/vuln/cmd/govulncheck
 
 require (
 	github.com/berquerant/structconfig v0.5.1
-	github.com/spf13/pflag v1.0.6
+	github.com/spf13/pflag v1.0.7
 	github.com/stretchr/testify v1.10.0
 	golang.org/x/text v0.28.0
 )
