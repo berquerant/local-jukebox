@@ -34,6 +34,10 @@ Loop.
 
   jukebox -r /root/dir/of/music -x query.txt --loop
 
+External filter.
+
+  jukebox -r /root/dir/of/music -x query.txt --dry -- -- -v | grep 'WORD' | jq -r .path | jukebox --play
+
 # Prerequisites
 
 - mf https://github.com/berquerant/metafind
@@ -54,6 +58,7 @@ Loop.
       --mpv string          mpv command, recommended: v0.40.0 (default "mpv")
   -r, --music_root string   required, root directory of music files
       --normalize           reload normalized index
+      --play                read music file names from stdin instead of query, music_root is not required, options other than mpv, loop and dry are ignored
   -x, --query string        music query (default "stdin")
   -q, --quiet               quiet logs
       --reload              reload index

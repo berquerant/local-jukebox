@@ -36,6 +36,15 @@ func (r *runner) run(ctx context.Context) error {
 	if err := r.c.Validate(); err != nil {
 		return err
 	}
+
+	if r.c.PlayOnly {
+		dest, err := iox.NewTmpFile(os.Stdin, "playlist")
+		if err != nil {
+			return err
+		}
+		return r.runPlay(ctx, dest.Name())
+	}
+
 	r.existIndex = iox.ExistFile(r.c.IndexFile())
 
 	if err := r.runIndex(ctx); err != nil {

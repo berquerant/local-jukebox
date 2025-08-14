@@ -19,6 +19,7 @@ type Config struct {
 	MusicRoot string `name:"music_root" short:"r" usage:"required, root directory of music files"`
 	Debug     bool   `name:"debug" usage:"enable debug logs"`
 	Quiet     bool   `name:"quiet" short:"q" usage:"quiet logs"`
+	PlayOnly  bool   `name:"play" usage:"read music file names from stdin instead of query, music_root is not required, options other than mpv, loop and dry are ignored"`
 	//
 	// external commands
 	//

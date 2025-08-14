@@ -47,6 +47,10 @@ Loop.
 
   jukebox -r /root/dir/of/music -x query.txt --loop
 
+External filter.
+
+  jukebox -r /root/dir/of/music -x query.txt --dry -- -- -v | grep 'WORD' | jq -r .path | jukebox --play
+
 # Prerequisites
 
 - mf https://github.com/berquerant/metafind

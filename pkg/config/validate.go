@@ -22,6 +22,9 @@ func (c *Config) Validate() error {
 }
 
 func (c *Config) validateMusicRoot() error {
+	if c.PlayOnly {
+		return nil
+	}
 	if x, err := os.Stat(c.MusicRoot); err == nil {
 		if x.IsDir() {
 			return nil
