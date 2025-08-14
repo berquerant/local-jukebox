@@ -10,7 +10,7 @@ type Config struct {
 	// CLI options, envs
 	//
 	Query     string `name:"query" short:"x" default:"stdin" usage:"music query"`
-	Dry       bool   `name:"dry" usage:"dryrun"`
+	Dry       bool   `name:"dry" short:"l" usage:"dryrun"`
 	Lines     int    `name:"lines" short:"n" usage:"head count"`
 	Loop      bool   `name:"loop" usage:"loop playlist"`
 	Reload    bool   `name:"reload" usage:"reload index"`
@@ -19,7 +19,7 @@ type Config struct {
 	MusicRoot string `name:"music_root" short:"r" usage:"required, root directory of music files"`
 	Debug     bool   `name:"debug" usage:"enable debug logs"`
 	Quiet     bool   `name:"quiet" short:"q" usage:"quiet logs"`
-	PlayOnly  bool   `name:"play" usage:"read music file names from stdin instead of query, music_root is not required, options other than mpv, loop and dry are ignored"`
+	PlayOnly  bool   `name:"play" short:"s" usage:"read music file names from stdin instead of query, music_root is not required, options other than mpv, loop and dry are ignored"`
 	//
 	// external commands
 	//

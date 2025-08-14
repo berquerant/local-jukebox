@@ -48,7 +48,7 @@ External filter.
 
 # Flags
       --debug               enable debug logs
-      --dry                 dryrun
+  -l, --dry                 dryrun
       --ffprobe string      ffprobe command, recommended: 7.1.1 (default "ffprobe")
       --grep string         grep command (default "grep")
       --jq string           jq command, recommended: 1.8.1 (default "jq")
@@ -58,7 +58,7 @@ External filter.
       --mpv string          mpv command, recommended: v0.40.0 (default "mpv")
   -r, --music_root string   required, root directory of music files
       --normalize           reload normalized index
-      --play                read music file names from stdin instead of query, music_root is not required, options other than mpv, loop and dry are ignored
+  -s, --play                read music file names from stdin instead of query, music_root is not required, options other than mpv, loop and dry are ignored
   -x, --query string        music query (default "stdin")
   -q, --quiet               quiet logs
       --reload              reload index
