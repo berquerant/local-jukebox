@@ -19,14 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5.0.0
       - name: Setup Go
-        uses: actions/setup-go@v5.5.0
-        id: setup-go
-        with:
-          go-version-file: "go.mod"
-          cache-dependency-path: go.sum
-      - name: Download go modules
-        if: ${{ steps.setup-go.outputs.cache-hit != 'true' }}
-        run: go mod download
+        uses: ./.github/actions/setup-go
       - name: Lint
         run: make lint
 
@@ -37,13 +30,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5.0.0
       - name: Setup Go
-        uses: actions/setup-go@v5.5.0
-        id: setup-go
-        with:
-          go-version-file: "go.mod"
-          cache-dependency-path: go.sum
-      - name: Download go modules
-        if: ${{ steps.setup-go.outputs.cache-hit != 'true' }}
-        run: go mod download
+        uses: ./.github/actions/setup-go
       - name: Test
         run: make test
