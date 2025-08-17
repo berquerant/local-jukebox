@@ -33,3 +33,14 @@ jobs:
         uses: ./.github/actions/setup-go
       - name: Test
         run: make test
+
+  build:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+      - name: Setup Go
+        uses: ./.github/actions/setup-go
+      - name: Build
+        run: make
