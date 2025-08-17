@@ -63,4 +63,5 @@ External filter.
   -q, --quiet               quiet logs
       --reload              reload index
       --shuffle             shuffle music (default true)
+  -w, --window              pretend GUI application
 ```

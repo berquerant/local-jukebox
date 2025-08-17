@@ -20,6 +20,7 @@ type Config struct {
 	Debug     bool   `name:"debug" usage:"enable debug logs"`
 	Quiet     bool   `name:"quiet" short:"q" usage:"quiet logs"`
 	PlayOnly  bool   `name:"play" short:"s" usage:"read music file names from stdin instead of query, music_root is not required, options other than mpv, loop and dry are ignored"`
+	Window    bool   `name:"window" short:"w" usage:"pretend GUI application"`
 	//
 	// external commands
 	//

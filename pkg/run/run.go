@@ -134,6 +134,7 @@ func (r *runner) runPlay(ctx context.Context, playlist string) error {
 		playlist,
 		r.c.Loop,
 		r.c.Dry,
+		r.c.Window,
 	)
 	return command.Run(ctx, c)
 }

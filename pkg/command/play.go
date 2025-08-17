@@ -11,13 +11,14 @@ import (
 	"syscall"
 )
 
-func NewPlay(w io.Writer, mpv, playlist string, loop, dry bool) *Play {
+func NewPlay(w io.Writer, mpv, playlist string, loop, dry, window bool) *Play {
 	return &Play{
 		w:        w,
 		mpv:      mpv,
 		playlist: playlist,
 		loop:     loop,
 		dry:      dry,
+		window:   window,
 	}
 }
 
@@ -28,6 +29,7 @@ type Play struct {
 	playlist string
 	loop     bool
 	dry      bool
+	window   bool
 }
 
 var _ Cmd = &Play{}
@@ -46,6 +48,9 @@ func (c *Play) Run(ctx context.Context) error {
 	}
 	if c.loop {
 		arg = append(arg, "--loop-playlist=true")
+	}
+	if c.window {
+		arg = append(arg, "--force-window=yes")
 	}
 	executable, err := exec.LookPath(c.mpv)
 	if err != nil {
