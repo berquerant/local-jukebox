@@ -1,6 +1,6 @@
 GOBUILD = go build -trimpath -v
 GOTEST = go test -cover -race
-CMD = "."
+CMD = ./cmd/jukebox
 BIN = dist/jukebox
 
 .PHONY: $(BIN)
