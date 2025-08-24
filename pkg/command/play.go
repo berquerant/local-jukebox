@@ -51,6 +51,8 @@ func (c *Play) Run(ctx context.Context) error {
 	}
 	if c.window {
 		arg = append(arg, "--force-window=yes")
+	} else {
+		arg = append(arg, "--force-window=no")
 	}
 	executable, err := exec.LookPath(c.mpv)
 	if err != nil {
