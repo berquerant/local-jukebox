@@ -1,11 +1,11 @@
 module github.com/berquerant/local-jukebox
 
-go 1.24.4
+go 1.25.0
 
 tool golang.org/x/vuln/cmd/govulncheck
 
 require (
-	github.com/berquerant/structconfig v0.5.1
+	github.com/berquerant/structconfig v0.6.0
 	github.com/spf13/pflag v1.0.10
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/text v0.29.0
