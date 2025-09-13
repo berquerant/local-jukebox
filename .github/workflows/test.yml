@@ -1,7 +1,6 @@
 name: Test
 
-permissions:
-  contents: read
+permissions: {}
 
 on:
   push:
@@ -14,10 +13,14 @@ on:
 jobs:
   lint:
     timeout-minutes: 5
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
       - name: Setup Go
         uses: ./.github/actions/setup-go
       - name: Lint
@@ -25,10 +28,14 @@ jobs:
 
   test:
     timeout-minutes: 5
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
       - name: Setup Go
         uses: ./.github/actions/setup-go
       - name: Test
@@ -36,10 +43,14 @@ jobs:
 
   build:
     timeout-minutes: 5
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
       - name: Setup Go
         uses: ./.github/actions/setup-go
       - name: Build
