@@ -138,7 +138,9 @@ func (c *Query) readQuery() (*iox.TmpFile, error) {
 	var buf []string
 	scanner := bufio.NewScanner(c.query)
 	for scanner.Scan() {
-		buf = append(buf, scanner.Text())
+		if txt := scanner.Text(); !strings.HasPrefix(txt, "//") {
+			buf = append(buf, txt)
+		}
 	}
 	if err := scanner.Err(); err != nil {
 		return nil, err

@@ -27,6 +27,16 @@ Play music files with the query file.
 
   jukebox -r /root/dir/of/music -x query.txt
 
+Query file is like:
+
+  n.name matches "SOME SONG"
+  // n.name matches "IGNORED because begin wtih //"
+  n.ffp.album matches "SOME ALBUM" and n.name matches "ANOTHER SONG"
+
+means
+
+  (n.name matches "SOME SONG") or (n.ffp.album matches "SOME ALBUM" and n.name matches "ANOTHER SONG")
+
 Display music files.
 
   MUSIC_ROOT=/root/dir/of/music jukebox --dry < query.txt
